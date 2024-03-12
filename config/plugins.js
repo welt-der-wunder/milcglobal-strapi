@@ -3,23 +3,23 @@ module.exports = ({ env }) => ({
 		config: {
 		  provider: "strapi-provider-upload-bunnynet",
 		  providerOptions: {
-			api_key: process.env.BUNNY_API_KEY,
-			storage_zone: process.env.BUNNY_STORAGE_ZONE,
-			pull_zone: process.env.BUNNY_PULL_ZONE,
+			api_key: env('BUNNY_API_KEY'),
+			storage_zone: env('BUNNY_STORAGE_ZONE'),
+			pull_zone: env('BUNNY_PULL_ZONE'),
 		  },
 		},
 	},	
 	email: {
 		config: {
-		  provider: 'amazon-ses',
+		  provider: env('MAIL_PROVIDER'),
 		  providerOptions: {
 			key: env('AWS_SES_KEY'),
 			secret: env('AWS_SES_SECRET'),
-			amazon: 'https://email.us-east-1.amazonaws.com',
+			amazon: env('AWS_SES_ENDPOINT'),
 		  },
 		  settings: {
-			defaultFrom: 'myemail@protonmail.com',
-			defaultReplyTo: 'myemail@protonmail.com',
+			defaultFrom: env('MAIL_DEFAULT_FROM_ADDRESS'),
+			defaultReplyTo: env('MAIL_DEFAULT_REPLY_TO_ADDRESS'),
 		  },
 		},
 	},
